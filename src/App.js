@@ -1,11 +1,10 @@
-import Navbar from "./Navbar";
-import Form from "./Form";
-import PageContent from "./PageContent";
-import { ThemeProvider } from "./context/ThemeContext";
-import { LanguageProvider } from "./context/LanguageContext";
+import Navbar from './Navbar';
+import Form from './Form';
+import PageContent from './PageContent';
+import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 
-
-function App() {
+const App = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
@@ -16,5 +15,5 @@ function App() {
       </LanguageProvider>
     </ThemeProvider>
   );
-}
+};
 export default App;
