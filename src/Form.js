@@ -17,30 +17,39 @@ import { LanguageContext } from './context/LanguageContext';
 
 const translate = {
     english: {
-        email: 'Email'
+        signIn: "Sign In",
+        email: "Email Address",
+        password: "Password",
+        remember: "Remember Me"
     },
     french: {
-        email: "Adresse Èlectronique"
+        signIn: "Se Connecter",
+        email: "Adresse Électronique",
+        password: "Mot de Passe",
+        remember: "Souviens-toi De Moi"
     }, 
     spanish: {
-        email: "Correo Electrónico"
+        signIn: "Registrarse",
+        email: "Correo Electrónico",
+        password: "Contraseña",
+        remember: "Recuérdame"
     }
 }
 
 class Form extends Component {
     static contextType = LanguageContext;
     render() {
-        const { language } = this.context;
+        const { language, changeLanguage } = this.context;
         const {classes} = this.props;
-        const { email } = translate[language];
+        const { email, signIn, password, remember } = translate[language];
         return (
             <main className={classes.main}>
                 <Paper className={classes.paper}>
                     <Avatar className={classes.avatar}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography variant='h5'>Sign In</Typography>
-                    <Select value="english">
+                    <Typography variant='h5'>{ signIn }</Typography>
+                    <Select value={language} onChange={changeLanguage}>
                         <MenuItem value="english">English</MenuItem>
                         <MenuItem value="french">French</MenuItem>
                         <MenuItem value="spanish">Spanish</MenuItem>
@@ -51,15 +60,15 @@ class Form extends Component {
                             <Input id="email" name="email" autoFocus></Input>
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="password">Password</InputLabel>
+                            <InputLabel htmlFor="password">{ password }</InputLabel>
                             <Input id="password" name="password" autoFocus></Input>
                         </FormControl>
                         <FormControlLabel
                             control={<Checkbox color="primary" />} 
-                            label='Remember Me'
+                            label={ remember }
                         />
                     </form>
-                    <Button variant="contained" type="submit" fullWidth color="primary" className={classes.submit}>Sign In</Button>
+                    <Button variant="contained" type="submit" fullWidth color="primary" className={classes.submit}>{signIn}</Button>
                 </Paper>
             </main>
         )
