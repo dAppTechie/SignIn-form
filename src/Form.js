@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -14,11 +13,26 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./styles/FormStyles";
-import { CheckBox } from '@material-ui/icons';
+import { LanguageContext } from './context/LanguageContext';
+
+const translate = {
+    english: {
+        email: 'Email'
+    },
+    french: {
+        email: "Adresse Èlectronique"
+    }, 
+    spanish: {
+        email: "Correo Electrónico"
+    }
+}
 
 class Form extends Component {
+    static contextType = LanguageContext;
     render() {
+        const { language } = this.context;
         const {classes} = this.props;
+        const { email } = translate[language];
         return (
             <main className={classes.main}>
                 <Paper className={classes.paper}>
@@ -33,7 +47,7 @@ class Form extends Component {
                     </Select>
                     <form className={classes.form}>
                         <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="email">Email</InputLabel>
+                            <InputLabel htmlFor="email">{ email }</InputLabel>
                             <Input id="email" name="email" autoFocus></Input>
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
